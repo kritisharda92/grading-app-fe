@@ -1,0 +1,53 @@
+.welcome-screen-container{
+    text-align: center;
+}
+
+.welcome-message {
+    margin-top: 150px;
+    margin-bottom: 70px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form {
+    display: inline-flex;
+
+    .welcome-button {
+        color: white;
+        font-size: 15px;
+        background: #F36E21;
+        border-radius: 10px;
+        height: 40px;
+        font-weight: 700;
+    }
+
+    .student-workflow {
+        display: grid;
+        padding: 20px;
+        margin: 20px;
+        .student {
+            height: 250px;
+            width: auto;
+        }
+    }
+
+    .professor-workflow {
+        display: grid;
+        padding: 20px;
+        margin: 20px;
+        .professor {
+            height: 250px;
+            width: auto;
+        }
+    }
+
+    .grader-workflow {
+        display: grid;
+        padding: 20px;
+        margin: 20px;
+        .grader {
+            height: 250px;
+            width: auto;
+        }
+    }
+}

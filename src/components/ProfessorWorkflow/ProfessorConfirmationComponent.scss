@@ -1,0 +1,49 @@
+.professor-conf-container {
+    margin-top: 60px;
+    text-align: center;
+
+    .professor-conf-heading{
+        text-align: center;
+    }
+
+    .confirmation-image{
+        height: 360px;
+    }
+
+    .professor-conf-msg {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .professor-conf-buttons{
+        .addProblem{
+            margin: 50px;
+            color: white;
+            font-size: 15px;
+            background: #F36E21;
+            border-radius: 10px;
+            height: 40px;
+            font-weight: 700;
+            width: 200px;
+        }
+        .profLogout{
+            margin: 50px;
+            color: white;
+            font-size: 15px;
+            background: #F36E21;
+            border-radius: 10px;
+            height: 40px;
+            font-weight: 700;
+            width: 200px;
+        }
+    }
+
+    // .professor-form{
+    //     margin: 0 200px;
+    //     font-size: 18px;
+    //     .homework-name {
+    //         margin: 0 50px;
+    //         width: 500px;
+    //     }
+    // }
+}

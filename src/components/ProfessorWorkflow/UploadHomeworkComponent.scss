@@ -1,0 +1,16 @@
+.professor-container {
+    margin-top: 60px;
+
+    .professor-heading{
+        text-align: center;
+    }
+
+    .professor-form{
+        margin: 0 200px;
+        font-size: 18px;
+        .homework-name {
+            margin: 0 50px;
+            width: 500px;
+        }
+    }
+}

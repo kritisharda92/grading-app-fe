@@ -1,0 +1,30 @@
+
+.header-text {
+    color: white;
+    background: #F36E21;
+    position: fixed;
+    top: 0;
+    left:0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .header-rit {
+        font-size: 34px;
+
+    }
+
+    .header-roc-1 {
+        font-size: 22px;
+        padding-left: 8px;
+    }
+
+    .header-roc {
+        padding-top: 2px;
+        font-size: 22px;
+        padding-left: 8px;
+    }
+}
