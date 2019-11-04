@@ -29,9 +29,9 @@ class UploadHomeworkComponent extends React.Component {
             <SubHeader user="Professor"/>
             <h2 className="professor-conf-heading">Confirmation screen</h2>
             <img src={binderIcon} alt="confirmation" className="confirmation-image"/> 
-            <div className="professor-conf-msg"> YAY! The problem was uploaded successfully</div> <br/>
+            <div className="professor-conf-msg"> YAY! The homework was uploaded successfully</div> <br/>
             <div className="professor-conf-buttons">
-                <input className="addProblem" type="button" name="addProblem" value="New Problem" onClick={this.addNewProblem}/>
+                <input className="addProblem" type="button" name="addProblem" value="New Homework" onClick={this.addNewProblem}/>
                 <input className="profLogout" type="button" name="profLogout" value="Logout" onClick={this.logoutProfessor}/>
             </div>
         </div>
