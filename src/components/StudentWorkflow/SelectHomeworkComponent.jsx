@@ -56,8 +56,8 @@ class SelectHomeworkComponent extends React.Component {
               <h2>Select Homework</h2>
               <div>
                   RIT Username: <input type="text" onChange={this.handleUsername}/> <br/> <br/>
-                  Homework Name: <select onChange={this.handleCurrentHomework}> 
-                  <option value="none" selected disabled hidden> Select an Option </option>
+                  Homework Name: <select onChange={this.handleCurrentHomework} defaultValue="none"> 
+                  <option value="none" disabled hidden> Select a homework </option>
                   {hwList} 
                   </select> <br/> <br/>
                   <input type="button" value="Upload Write-up" />
