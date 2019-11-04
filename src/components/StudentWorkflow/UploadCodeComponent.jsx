@@ -32,12 +32,13 @@ class UploadCodeComponent extends React.Component {
         formData.append("homeworkName", this.state.currentHomework);
         formData.append("questionName", this.state.currentProblem);
 
+        console.log(this.state);
         // API call to upload code for a problem
-        // fetch('http://localhost:8080/upload', {
-        //   method: 'POST',
-        //   body: formData,
-        //   mode: "no-cors"
-        // });
+        fetch('http://localhost:8080/submitHomework', {
+          method: 'POST',
+          body: formData,
+          mode: "no-cors"
+        });
 
         this.props.history.push("/");
 
@@ -62,8 +63,8 @@ class UploadCodeComponent extends React.Component {
               <h2>Select Homework</h2>
               <div>
                   {/* RIT Username: <input type="text" onChange={this.handleUsername}/> <br/> <br/> */}
-                  Problem Name: <select onChange={this.handleCurrentProblem}> 
-                  <option value="none" selected disabled hidden> Select an Option </option>
+                  Problem Name: <select onChange={this.handleCurrentProblem} defaultValue="none"> 
+                  <option value="none" disabled hidden> Select a problem </option>
                   {probList} 
                   </select> <br/> <br/>
                   Upload Code: <input type="file" onChange={this.handleCodeFile}/>
