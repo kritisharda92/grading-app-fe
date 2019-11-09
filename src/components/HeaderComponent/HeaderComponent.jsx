@@ -10,7 +10,6 @@ class Header extends React.Component {
     }
 
     redirectToHome() {
-        console.log(this);
         this.props.history.push('/');
     }
 

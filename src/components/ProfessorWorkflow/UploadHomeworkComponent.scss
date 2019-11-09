@@ -8,9 +8,32 @@
     .professor-form{
         margin: 0 350px;
         font-size: 18px;
-        .homework-name {
-            // margin: 0 50px;
-            // width: 500px;
+
+        .buttons-wrapper {
+
+            .button-style {
+                font-size: 16px;
+                border-radius: 10px;
+                height: 36px;
+                width: 160px;
+            }
+    
+            .add-problem {
+                margin-right: 20px;
+            }
+    
+            .submit-button {
+                color: white;
+                font-size: 15px;
+                background: #F36E21;
+                border-radius: 10px;
+                height: 40px;
+                font-weight: 700;
+                margin: 50px 0;
+                width: 160px;
+            }
+
         }
+
     }
 }

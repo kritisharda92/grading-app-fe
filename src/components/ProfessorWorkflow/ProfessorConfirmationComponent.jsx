@@ -1,5 +1,4 @@
 import React from 'react';
-import QuestionDescription from './QuestionDescriptionComponent';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import './ProfessorConfirmationComponent.scss';

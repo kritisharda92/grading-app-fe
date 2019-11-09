@@ -2,7 +2,7 @@ import React from 'react';
 import QuestionDescription from './QuestionDescriptionComponent';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 import './UploadHomeworkComponent.scss';
 
@@ -113,16 +113,18 @@ class UploadHomeworkComponent extends React.Component {
                   )
               })
               }
-              <input type="button" onClick={this.addAnotherProblem} value="Add another problem"/>
-              {
-                (this.state.problems.length>0) ? 
-                  <input type="button" onClick={this.removeProblem} value="Remove"/>
-                  :
-                  ""
-              }
+              <div className="buttons-wrapper">
+                <input type="button" className="button-style add-problem" onClick={this.addAnotherProblem} value="Add Problem"/>
+                {
+                  (this.state.problems.length>0) ? 
+                    <input type="button" className="button-style" onClick={this.removeProblem} value="Remove Problem"/>
+                    :
+                    ""
+                }
 
-              <br />
-              <button type="submit" onClick={this.handleHomeworkUploadSubmit}>Submit</button>
+                <br />
+                <button className="submit-button" type="submit" onClick={this.handleHomeworkUploadSubmit}>Submit</button>
+              </div>
             </div>
         </div>
       );

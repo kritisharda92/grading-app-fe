@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
+import axios from 'axios';
 import './UploadCodeComponent.scss';
 
 class UploadCodeComponent extends React.Component {
@@ -9,7 +10,6 @@ class UploadCodeComponent extends React.Component {
         let hw = props.history.location.state.homework;
         let user = props.history.location.state.username;
         this.state = {
-            // problems: ["problem-1","problem-2","problem-3"],
             problems: [],
             currentProblem: '', 
             currentHomework: hw,
@@ -21,13 +21,10 @@ class UploadCodeComponent extends React.Component {
         this.handleCodeFile = this.handleCodeFile.bind(this);
     }
 
-    componentWillMount() {
-        fetch('http://localhost:8080/findProblem', {
-          method: 'GET',
-          body: this.state.currentHomework,
-          mode: "no-cors"
-        }).then((response) => {
-          this.setState({ problems: response });
+    UNSAFE_componentWillMount() {
+        axios.get('http://localhost:8080/findProblem?homeworkName='+this.state.currentHomework)
+        .then((response) => {
+            this.setState({ problems: response.data });
         });
     }
 
@@ -36,14 +33,12 @@ class UploadCodeComponent extends React.Component {
     }
 
     handleUploadCode() {
-        // console.log(this.state);
         var formData = new FormData();
         formData.append("sourceCode",this.state.code);
         formData.append("userName", this.state.username);
         formData.append("homeworkName", this.state.currentHomework);
         formData.append("questionName", this.state.currentProblem);
 
-        console.log(this.state);
         // API call to upload code for a problem
         fetch('http://localhost:8080/submitHomework', {
           method: 'POST',

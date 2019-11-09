@@ -2,13 +2,13 @@ import React from 'react';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import './SelectHomeworkComponent.scss';
+import axios from 'axios';
 
 class SelectHomeworkComponent extends React.Component {
     constructor() {
         super();
         
         this.state = {
-            // homeworks: ["Homework-1", "Homework-2", "Homework-3"],
             homeworks: [],
             currentHomework: '',
             username: ''
@@ -19,12 +19,10 @@ class SelectHomeworkComponent extends React.Component {
         this.handleUploadCode = this.handleUploadCode.bind(this);
     }
 
-    componentWillMount() {
-        fetch('http://localhost:8080/availableHomework', {
-          method: 'GET',
-          mode: "no-cors"
-        }).then((response) => {
-          this.setState({ homework: response });
+    UNSAFE_componentWillMount() {
+        axios.get('http://localhost:8080/availableHomework')
+        .then((response) => {
+            this.setState ({ homeworks: response.data });
         });
     }
 
@@ -39,7 +37,6 @@ class SelectHomeworkComponent extends React.Component {
     handleUploadCode() {
         let curHw = this.state.currentHomework;
         let user = this.state.username;
-        console.log(this.state);
         this.props.history.push({
             pathname: '/uploadCode',
             state: { 
@@ -64,6 +61,26 @@ class SelectHomeworkComponent extends React.Component {
               <Header />
               < SubHeader user="Student"/>
               <h2>Select Homework</h2>
+
+              {/* <div className="professor-form">
+                <Form.Group controlId="formUserName">
+                    <Form.Label>RIT Username</Form.Label>
+                    <Form.Control className="user-name" type="text" name="userName" onChange={this.handleUsername} placeholder="Enter username" />
+                </Form.Group>
+                <Form.Group controlId="formHomeworkName">
+                    <Form.Label>Homework Name</Form.Label>
+                    <Form.Control as="select" name="selectHomework" onChange={this.handleCurrentHomework} dafaultValue ="none" placeholder="Enter due date" />
+                </Form.Group>
+                <QuestionDescription id={0} questionData={this.problemUpdate}/>
+                {
+                    this.state.problems.map((problem,index) => {
+                    return (
+                        <QuestionDescription key={index} id={index+1} questionData={this.problemUpdate}/>
+                    )
+                })
+                }
+                </div> */}
+
               <div>
                   RIT Username: <input type="text" onChange={this.handleUsername}/> <br/> <br/>
                   Homework Name: <select onChange={this.handleCurrentHomework} defaultValue="none"> 
