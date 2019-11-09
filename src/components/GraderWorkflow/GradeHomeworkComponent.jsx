@@ -18,7 +18,7 @@ class GradeHomeworkComponent extends React.Component {
     }
 
     UNSAFE_componentWillMount() {
-        axios.get('http://localhost:8080/availableHomework')
+        axios.get('http://localhost:8080/findAllHomework')
         .then((response) => {
             this.setState ({ allHomeworks: response.data });
         });
