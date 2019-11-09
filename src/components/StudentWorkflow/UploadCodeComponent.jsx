@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
+import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import './UploadCodeComponent.scss';
 
@@ -13,12 +14,15 @@ class UploadCodeComponent extends React.Component {
             problems: [],
             currentProblem: '', 
             currentHomework: hw,
+            currentLanguage: '',
             username: user,
-            code: ''
+            code: '',
+            languages: ['Java', 'Python']
         }
         this.handleCurrentProblem = this.handleCurrentProblem.bind(this);
         this.handleUploadCode = this.handleUploadCode.bind(this);
         this.handleCodeFile = this.handleCodeFile.bind(this);
+        this.handleCurrentLanguage = this.handleCurrentLanguage.bind(this);
     }
 
     UNSAFE_componentWillMount() {
@@ -30,6 +34,10 @@ class UploadCodeComponent extends React.Component {
 
     handleCurrentProblem(e) {
         this.setState({currentProblem: e.target.value});
+    }
+
+    handleCurrentLanguage(e) {
+        this.setState({ currentLanguage: e.target.value});
     }
 
     handleUploadCode() {
@@ -61,22 +69,55 @@ class UploadCodeComponent extends React.Component {
 		return (
 			<option key={i} value={item}>{item}</option>
         )}, this);
+
+        let lang = this.state.languages;
+        let langList = lang.length > 0 && lang.map((item,i) => {
+            return <option key={i} value={item}>{item}</option>
+        }, this);
     
         return (
           <div className='student-code-container'>
               <Header />
               < SubHeader user="Student"/>
-              <h2>Select Problem</h2>
-              <div>
-                  {/* RIT Username: <input type="text" onChange={this.handleUsername}/> <br/> <br/> */}
+              <h2 className="student-heading">Select Problem</h2>
+
+              <div className="professor-form">
+                <Form.Group controlId="formProblemName">
+                    <Form.Label>Problem Name</Form.Label>
+                    <Form.Control as="select" name="selectProblem" onChange={this.handleCurrentProblem} defaultValue ="none" >
+                        <option value="none" disabled hidden> Select a problem </option>
+                        {probList}
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="formLanguageName">
+                    <Form.Label>Programming Language Name</Form.Label>
+                    <Form.Control as="select" name="selectLanguage" onChange={this.handleCurrentLanguage} defaultValue ="none" >
+                        <option value="none" disabled hidden> Select a programming language </option>
+                        {langList}
+                    </Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="formCodeFile">
+                    <Form.Label>Upload Code</Form.Label>
+                    <Form.Control type="file" name="outputFile" onChange={this.handleCodeFile} placeholder="Upload the code file" />
+                </Form.Group>
+
+                <div className="button-wrapper" >
+                    <input className="submit-button" type="button" value="Upload Code" onClick={this.handleUploadCode}/>
+                    <input className="submit-button" type="button" value="Upload Code" onClick={this.handleUploadCode}/>
+                </div>
+              </div>
+
+
+              {/* <div>
                   Problem Name: <select onChange={this.handleCurrentProblem} defaultValue="none"> 
                   <option value="none" disabled hidden> Select a problem </option>
                   {probList} 
                   </select> <br/> <br/>
                   Upload Code: <input type="file" onChange={this.handleCodeFile}/> <br/> <br/>
-                  {/* <input type="button" value="Upload Write-up" /> */}
                   <input type="button" value="Upload Code" onClick={this.handleUploadCode}/>
-              </div>
+              </div> */}
           </div>
         );
     }

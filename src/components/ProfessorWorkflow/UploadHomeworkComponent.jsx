@@ -103,8 +103,6 @@ class UploadHomeworkComponent extends React.Component {
                 <Form.Label>Due Date</Form.Label>
                 <Form.Control type="date" name="dueDate" onChange={this.handleDueDate} placeholder="Enter due date" />
               </Form.Group>
-              {/* Homework Name: <input className="homework-name" type="text" name="homeworkName" onChange={this.handleHomeworkName}/> */}
-              {/* Due Date: <input type="date" name="dueDate" onChange={this.handleDueDate}/> */}
               <QuestionDescription id={0} questionData={this.problemUpdate}/>
               {
                 this.state.problems.map((problem,index) => {
