@@ -9,10 +9,7 @@ const graderIcon = require('../../assets/F-to-A-Test.png');
 class WelcomeScreenComponent extends React.Component {
     constructor() {
       super();
-
-    //   this.handleSubmit = this.handleSubmit.bind(this);
-    //   this.handleNameChange = this.handleNameChange.bind(this);
-    //   this.handleDateChange = this.handleDateChange.bind(this);
+      
     this.handleStudentClick = this.handleStudentClick.bind(this);
     this.handleProfessorClick = this.handleProfessorClick.bind(this);
     this.handleGraderClick = this.handleGraderClick.bind(this);

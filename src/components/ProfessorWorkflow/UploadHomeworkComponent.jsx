@@ -2,6 +2,8 @@ import React from 'react';
 import QuestionDescription from './QuestionDescriptionComponent';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
+import { Form, Button } from 'react-bootstrap';
+
 import './UploadHomeworkComponent.scss';
 
 class UploadHomeworkComponent extends React.Component {
@@ -30,8 +32,9 @@ class UploadHomeworkComponent extends React.Component {
     }
 
     removeProblem() {
+      var len = this.state.problems.length;
       this.setState({ 
-        problem: this.state.problems.splice(0,1),
+        problems: this.state.problems.splice(0,len-1),
         numberOfProblems: this.state.numberOfProblems-1
       })
     }
@@ -85,14 +88,23 @@ class UploadHomeworkComponent extends React.Component {
     }
   
     render() {
+      console.log(this.state);
       return (
         <div className='professor-container'>
             <Header />
             <SubHeader user="Professor"/>
             <h2 className="professor-heading">Create Homework</h2>
             <div className="professor-form">
-              Homework Name: <input className="homework-name" type="text" name="homeworkName" onChange={this.handleHomeworkName}/>
-              Due Date: <input type="date" name="dueDate" onChange={this.handleDueDate}/>
+              <Form.Group controlId="formHomeworkName">
+                <Form.Label>Homework Name</Form.Label>
+                <Form.Control className="homework-name" type="text" name="homeworkName" onChange={this.handleHomeworkName} placeholder="Enter homework name" />
+              </Form.Group>
+              <Form.Group controlId="formDueDate">
+                <Form.Label>Due Date</Form.Label>
+                <Form.Control type="date" name="dueDate" onChange={this.handleDueDate} placeholder="Enter due date" />
+              </Form.Group>
+              {/* Homework Name: <input className="homework-name" type="text" name="homeworkName" onChange={this.handleHomeworkName}/> */}
+              {/* Due Date: <input type="date" name="dueDate" onChange={this.handleDueDate}/> */}
               <QuestionDescription id={0} questionData={this.problemUpdate}/>
               {
                 this.state.problems.map((problem,index) => {

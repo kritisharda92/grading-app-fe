@@ -60,14 +60,14 @@ class UploadCodeComponent extends React.Component {
           <div className='student-code-container'>
               <Header />
               < SubHeader user="Student"/>
-              <h2>Select Homework</h2>
+              <h2>Select Problem</h2>
               <div>
                   {/* RIT Username: <input type="text" onChange={this.handleUsername}/> <br/> <br/> */}
                   Problem Name: <select onChange={this.handleCurrentProblem} defaultValue="none"> 
                   <option value="none" disabled hidden> Select a problem </option>
                   {probList} 
                   </select> <br/> <br/>
-                  Upload Code: <input type="file" onChange={this.handleCodeFile}/>
+                  Upload Code: <input type="file" onChange={this.handleCodeFile}/> <br/> <br/>
                   {/* <input type="button" value="Upload Write-up" /> */}
                   <input type="button" value="Upload Code" onClick={this.handleUploadCode}/>
               </div>

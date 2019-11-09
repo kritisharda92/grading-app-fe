@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import './QuestionDescriptionComponent.scss';
 
 class QuestionDecriptionComponent extends React.Component {
     constructor(props) {
@@ -50,24 +51,38 @@ class QuestionDecriptionComponent extends React.Component {
     
     render() {
 
-        return (
-            <div className="question-description-container" id={this.state.id}>
-                Problem Name: <input type="text" name="problemName" onChange={this.problemNameUpdate} /> <br/>
-                Problem Decription: <input type="text" name="problemDescription" onChange={this.problemDescription} /> <br/>
-                Text Case File: <input type="file" name="textCases" onChange={this.testCase} /> <br/>
-                Expected Output File: <input type="file" name="outputFile" onChange={this.expectedOutput} /> <br/>
-                {/* <button onClick="this.handleUploadClick">Upload</button> */}
-            </div>
-          );
-
         // return (
-        //   <div className="question-description-container" id={this.state.id}>
-        //       Problem Name: <input type="text" name="problemName" onChange={this.problemNameUpdate} /> <br/>
-        //       Problem Decription: <input type="text" name="problemDescription" onChange={this.problemDescription} /> <br/>
-        //       Text Case File: <input type="file" name="textCases" onChange={this.testCase} /> <br/>
-        //       Expected Output File: <input type="file" name="outputFile" onChange={this.expectedOutput} /> <br/>
-        //   </div>
-        // );
+        //     <div className="question-description-container" id={this.state.id}>
+        //         Problem Name: <input type="text" name="problemName" onChange={this.problemNameUpdate} /> <br/>
+        //         Problem Decription: <input type="text" name="problemDescription" onChange={this.problemDescription} /> <br/>
+        //         Text Case File: <input type="file" name="textCases" onChange={this.testCase} /> <br/>
+        //         Expected Output File: <input type="file" name="outputFile" onChange={this.expectedOutput} /> <br/>
+        //         {/* <button onClick="this.handleUploadClick">Upload</button> */}
+        //     </div>
+        //   );
+
+        return (
+
+            <div className="question-description-container" id={this.state.id}>
+                <Form.Group controlId="formProblemName">
+                    <Form.Label>Problem Name</Form.Label>
+                    <Form.Control type="text" name="problemName" onChange={this.problemNameUpdate} placeholder="Enter problem name" />
+                </Form.Group>
+                <Form.Group controlId="formProblemDescription">
+                    <Form.Label>Problem Decription</Form.Label>
+                    <Form.Control type="text" name="problemDescription" onChange={this.problemDescription} placeholder="Enter problem description" />
+                </Form.Group>
+                <Form.Group controlId="formTestCase">
+                    <Form.Label>Text Case File</Form.Label>
+                    <Form.Control type="file" name="textCases" onChange={this.testCase} placeholder="Upload the test case file" />
+                </Form.Group>
+                <Form.Group controlId="formExpectedOutput">
+                    <Form.Label>Expected Output File</Form.Label>
+                    <Form.Control type="file" name="outputFile" onChange={this.expectedOutput} placeholder="Upload the expected output file" />
+                </Form.Group>
+            </div>
+
+        );
     }
 }
 
