@@ -9,7 +9,8 @@ class UploadCodeComponent extends React.Component {
         let hw = props.history.location.state.homework;
         let user = props.history.location.state.username;
         this.state = {
-            problems: ["problem-1","problem-2","problem-3"],
+            // problems: ["problem-1","problem-2","problem-3"],
+            problems: [],
             currentProblem: '', 
             currentHomework: hw,
             username: user,
@@ -18,6 +19,16 @@ class UploadCodeComponent extends React.Component {
         this.handleCurrentProblem = this.handleCurrentProblem.bind(this);
         this.handleUploadCode = this.handleUploadCode.bind(this);
         this.handleCodeFile = this.handleCodeFile.bind(this);
+    }
+
+    componentWillMount() {
+        fetch('http://localhost:8080/findProblem', {
+          method: 'GET',
+          body: this.state.currentHomework,
+          mode: "no-cors"
+        }).then((response) => {
+          this.setState({ problems: response });
+        });
     }
 
     handleCurrentProblem(e) {

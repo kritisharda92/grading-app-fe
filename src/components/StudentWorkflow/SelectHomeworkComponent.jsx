@@ -8,7 +8,8 @@ class SelectHomeworkComponent extends React.Component {
         super();
         
         this.state = {
-            homeworks: ["Homework-1", "Homework-2", "Homework-3"],
+            // homeworks: ["Homework-1", "Homework-2", "Homework-3"],
+            homeworks: [],
             currentHomework: '',
             username: ''
         }
@@ -16,6 +17,15 @@ class SelectHomeworkComponent extends React.Component {
         this.handleUsername = this.handleUsername.bind(this);
         this.handleCurrentHomework = this.handleCurrentHomework.bind(this);
         this.handleUploadCode = this.handleUploadCode.bind(this);
+    }
+
+    componentWillMount() {
+        fetch('http://localhost:8080/availableHomework', {
+          method: 'GET',
+          mode: "no-cors"
+        }).then((response) => {
+          this.setState({ homework: response });
+        });
     }
 
     handleUsername(e) {
