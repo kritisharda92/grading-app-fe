@@ -108,16 +108,6 @@ class UploadCodeComponent extends React.Component {
                     <input className="submit-button" type="button" value="Upload Code" onClick={this.handleUploadCode}/>
                 </div>
               </div>
-
-
-              {/* <div>
-                  Problem Name: <select onChange={this.handleCurrentProblem} defaultValue="none"> 
-                  <option value="none" disabled hidden> Select a problem </option>
-                  {probList} 
-                  </select> <br/> <br/>
-                  Upload Code: <input type="file" onChange={this.handleCodeFile}/> <br/> <br/>
-                  <input type="button" value="Upload Code" onClick={this.handleUploadCode}/>
-              </div> */}
           </div>
         );
     }

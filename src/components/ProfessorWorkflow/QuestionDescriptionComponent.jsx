@@ -38,9 +38,7 @@ class QuestionDecriptionComponent extends React.Component {
     
     
     render() {
-
         return (
-
             <div className="question-description-container" id={this.state.id}>
                 <Form.Group controlId="formProblemName">
                     <Form.Label>Problem Name</Form.Label>
@@ -51,7 +49,7 @@ class QuestionDecriptionComponent extends React.Component {
                     <Form.Control type="text" name="problemDescription" onChange={this.problemDescription} placeholder="Enter problem description" />
                 </Form.Group>
                 <Form.Group controlId="formTestCase">
-                    <Form.Label>Text Case File</Form.Label>
+                    <Form.Label>Test Case File</Form.Label>
                     <Form.Control type="file" name="textCases" onChange={this.testCase} placeholder="Upload the test case file" />
                 </Form.Group>
                 <Form.Group controlId="formExpectedOutput">

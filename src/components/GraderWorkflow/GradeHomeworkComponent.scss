@@ -1,3 +1,30 @@
 .grader-container{
     margin-top: 60px;
+
+    .grader-heading{
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .grader-form{
+        margin: 0 350px;
+        font-size: 18px;
+    
+        .button-wrapper {
+            text-align: center;
+            margin-top: 80px;
+
+            .submit-button {
+                color: white;
+                font-size: 15px;
+                background: #F36E21;
+                border-radius: 10px;
+                height: 40px;
+                font-weight: 700;
+                margin: 20px;
+                width: 160px;
+            }
+        }
+    }
+
 }
