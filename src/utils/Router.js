@@ -6,6 +6,8 @@ import ProfessorPage from '../components/ProfessorWorkflow/UploadHomeworkCompone
 import GraderPage from '../components/GraderWorkflow/GradeHomeworkComponent';
 import ProfessorConfirmation from '../components/ProfessorWorkflow/ProfessorConfirmationComponent';
 import UploadCodePage from '../components/StudentWorkflow/UploadCodeComponent';
+import StudentSubmissionComponent from '../components/StudentWorkflow/StudentSubmissionComponent';
+import StudentsHomeworkComponent from '../components/GraderWorkflow/StudentsHomeworkComponent';
 
 class Router extends Component {
 
@@ -19,6 +21,8 @@ class Router extends Component {
             <Route exact path="/" component={WelcomeScreenPage} />
             <Route exact path="/professorConfirmation" component={ProfessorConfirmation} />
             <Route exact path="/uploadCode" component={UploadCodePage} />
+            <Route exact path="/submissionDetails" component={StudentSubmissionComponent} />
+            <Route exact path="/studentsHomework" component={StudentsHomeworkComponent} />
         </div>
       </HashRouter>
       /* eslint-enable */

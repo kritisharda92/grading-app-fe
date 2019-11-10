@@ -18,6 +18,7 @@ class SelectHomeworkComponent extends React.Component {
         this.handleUsername = this.handleUsername.bind(this);
         this.handleCurrentHomework = this.handleCurrentHomework.bind(this);
         this.handleUploadCode = this.handleUploadCode.bind(this);
+        this.handleWriteUp = this.handleWriteUp.bind(this);
     }
 
     UNSAFE_componentWillMount() {
@@ -25,6 +26,20 @@ class SelectHomeworkComponent extends React.Component {
         .then((response) => {
             this.setState ({ homeworks: response.data });
         });
+    }
+
+    handleWriteUp(e) {
+        let formData = new FormData();
+        formData.append("writeupFile", e.target.files[0]);
+        formData.append("userName", this.state.username);
+        formData.append("homeworkName", this.state.currentHomework);
+
+        fetch('http://localhost:8080/uploadWriteup', {
+          method: 'POST',
+          body: formData,
+          mode: "no-cors"
+        })
+        .then(res=>console.log(res));
     }
 
     handleUsername(e) {
@@ -76,11 +91,11 @@ class SelectHomeworkComponent extends React.Component {
                         {hwList} 
                     </Form.Control>
                 </Form.Group>
-
                 <div className="button-wrapper" >
                     <input className="submit-button" type="button" value="Upload Write-up" />
                     <input className="submit-button" type="button" value="Upload Code" onClick={this.handleUploadCode}/>
                 </div>
+                <input onChange={this.handleWriteUp} className="dummy-button" id="myInput" type="file" />
               </div>
 
               {/* <div>

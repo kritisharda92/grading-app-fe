@@ -15,6 +15,7 @@ class GradeHomeworkComponent extends React.Component {
         }
 
         this.handleCurrentHomework = this.handleCurrentHomework.bind(this);
+        this.handleHomeworkSubmit = this.handleHomeworkSubmit.bind(this);
     }
 
     UNSAFE_componentWillMount() {
@@ -26,6 +27,16 @@ class GradeHomeworkComponent extends React.Component {
 
     handleCurrentHomework(e) {
         this.setState({currentHomework: e.target.value});
+    }
+
+    handleHomeworkSubmit() {
+        let hw = this.state.currentHomework;
+        this.props.history.push({
+            pathname: '/studentsHomework',
+            state: { 
+                homework: hw, 
+            }
+          })
     }
 
     render() {
@@ -50,7 +61,7 @@ class GradeHomeworkComponent extends React.Component {
                 </Form.Group>
 
                 <div className="button-wrapper" >
-                    <input className="submit-button" type="button" value="Upload Code"/>
+                    <input onClick={this.handleHomeworkSubmit} className="submit-button" type="button" value="Grade Homework"/>
                 </div>
               </div>
           </div>
