@@ -8,6 +8,7 @@ import ProfessorConfirmation from '../components/ProfessorWorkflow/ProfessorConf
 import UploadCodePage from '../components/StudentWorkflow/UploadCodeComponent';
 import StudentSubmissionComponent from '../components/StudentWorkflow/StudentSubmissionComponent';
 import StudentsHomeworkComponent from '../components/GraderWorkflow/StudentsHomeworkComponent';
+import GradeProblemComponent from '../components/GraderWorkflow/GradeProblemComponent';
 
 class Router extends Component {
 
@@ -23,6 +24,7 @@ class Router extends Component {
             <Route exact path="/uploadCode" component={UploadCodePage} />
             <Route exact path="/submissionDetails" component={StudentSubmissionComponent} />
             <Route exact path="/studentsHomework" component={StudentsHomeworkComponent} />
+            <Route exact path="/gradeProblem" component={GradeProblemComponent} />
         </div>
       </HashRouter>
       /* eslint-enable */
