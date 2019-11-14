@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
+import axios from 'axios';
 import './GradeProblemComponent.scss';
 
 class GradeProblemComponent extends React.Component {
@@ -10,7 +11,13 @@ class GradeProblemComponent extends React.Component {
         this.state = {
 
         }
+    }
 
+    UNSAFE_componentWillMount() {
+        axios.get('http://localhost:8080/downloadFile?homeworkName='+'homework4'+'&questionName='+'p1'+'&userName='+'user0')
+        .then((response) => {
+            console.log(response.data);
+        });
     }
 
     render() {

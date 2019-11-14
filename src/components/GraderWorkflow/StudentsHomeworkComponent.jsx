@@ -29,7 +29,6 @@ class StudentsHomeworkComponent extends React.Component {
         //     ]
         // }
 
-        this.renderTableData = this.renderTableData.bind(this);
         this.handleProblemClick = this.handleProblemClick.bind(this);
     }
 
@@ -38,12 +37,10 @@ class StudentsHomeworkComponent extends React.Component {
         axios.get('http://localhost:8080/getHomeworkSubmissions?homeworkName='+this.state.currentHomework)
         .then((response) => {
             this.setState({ submissionDetails: response.data });
-            // console.log(response.data)
         });
     }
 
     handleProblemClick(problemName, userName) {
-        console.log(problemName + " " + userName);
         this.props.history.push({
             pathname: '/gradeProblem',
             state: { 
@@ -54,19 +51,6 @@ class StudentsHomeworkComponent extends React.Component {
         })
         
     }
-
-    renderTableData(users) {
-        return users.map((item, index) => {
-           return (
-              <tr key={index}>
-                 <td>{index}</td>
-                 <td>{item}</td>
-                 <td>date</td>
-                 <td>graded</td>
-              </tr>
-           )
-        })
-     }
 
     render() {
         var data = this.state.submissionDetails;
@@ -115,7 +99,6 @@ class StudentsHomeworkComponent extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {this.renderTableData(users)} */}
                     {tableRows}
                 </tbody>
                 </Table>
