@@ -22,12 +22,16 @@ class GradeProblemComponent extends React.Component {
             expectedOutput: '',
             studentOutput: '',
             status: 1,
+            codeURL: '',
+            writeupURL:'',
             testCasePassed: false
         }
 
         this.marksUpdate = this.marksUpdate.bind(this);
         this.feedbackUpdate = this.feedbackUpdate.bind(this);
         this.handleSubmitMarks = this.handleSubmitMarks.bind(this);
+        this.handleWriteupDownload = this.handleWriteupDownload.bind(this);
+        this.handleCodeDownload = this.handleCodeDownload.bind(this);
     }
 
     UNSAFE_componentWillMount() {
@@ -39,12 +43,30 @@ class GradeProblemComponent extends React.Component {
                 expectedOutput: response.data.result.expectedOutput,
                 studentOutput: response.data.result.studentOutput,
                 status: response.data.result.status,
-                testCasePassed: response.data.result.testCasePassed
+                testCasePassed: response.data.result.testCasePassed,
+                codeURL: response.data.result.codeFileURL,
+                writeupURL: response.data.result.writeupFileURL,
             })
         });
     }
 
+    handleWriteupDownload() {
+        axios.get('http://localhost:8080/download?filename='+this.state.writeupURL)
+        .then((response) => {
+            console.log(response.data);
+        });
+    }
+
+    handleCodeDownload() {
+        axios.get('http://localhost:8080/download?filename='+this.state.codeURL)
+        .then((response) => {
+            console.log(response.data);
+        });
+    }
+
     handleSubmitMarks(){
+        console.log("hitting the API now!")
+
         var fd = new FormData();
         fd.append("userName",this.state.username);
         fd.append("homeworkName",this.state.homework);
@@ -56,6 +78,15 @@ class GradeProblemComponent extends React.Component {
         .then((response) => {
            console.log(response.data);
         });
+
+        window.alert("Student marks and feedback was recorded successfully!");
+
+        this.props.history.push({
+            pathname: '/studentsHomework',
+            state: { 
+                homework: this.state.homework, 
+            }
+          })
     }
 
     marksUpdate(e) {
@@ -81,9 +112,28 @@ class GradeProblemComponent extends React.Component {
               <h2 className="student-heading">Submission Details</h2>
 
               <div className="student-submission-form">
-                <div> Username : <span className="info-name">{this.state.username}</span></div>
-                <div> Homework : <span className="info-name">{this.state.homework}</span></div>
-                <div> Problem : <span className="info-name">{this.state.problem}</span></div> <br />
+                <div> 
+                    <div className="info-heading"> Username : </div>
+                    <div className="info-value">{this.state.username}</div>
+                </div>
+                <div> 
+                    <div className="info-heading"> Homework : </div>
+                    <div className="info-value">{this.state.homework}</div>
+                </div>
+                <div> 
+                    <div className="info-heading"> Problem : </div>
+                    <div className="info-value">{this.state.problem}</div>
+                </div>
+                <div> 
+                    <div className="info-heading"> Code File : </div>
+                    <input type='button' className="info-button" onClick={this.handleCodeDownload} value="Download code file"/>
+                </div>
+                <div> 
+                    <div className="info-heading"> Write-Up File : </div>
+                    <input type='button' className="info-button" onClick={this.handleWriteupDownload} value="Download write-up file" />
+                </div>
+
+                <br/>
                 <div> Your Output : </div>
                 <div className="display-box"> { yourOutput } </div> <br/> 
                 <div> Expected Output :</div>

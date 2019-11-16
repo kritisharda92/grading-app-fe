@@ -40,6 +40,8 @@ class SelectHomeworkComponent extends React.Component {
           mode: "no-cors"
         })
         .then(res=>console.log(res));
+
+        alert("The write-up was uploaded successfully!");
     }
 
     handleUsername(e) {
@@ -97,16 +99,6 @@ class SelectHomeworkComponent extends React.Component {
                 </div>
                 <input onChange={this.handleWriteUp} className="dummy-button" id="myInput" type="file" />
               </div>
-
-              {/* <div>
-                  RIT Username: <input type="text" onChange={this.handleUsername}/> <br/> <br/>
-                  Homework Name: <select onChange={this.handleCurrentHomework} defaultValue="none"> 
-                  <option value="none" disabled hidden> Select a homework </option>
-                  {hwList} 
-                  </select> <br/> <br/>
-                  <input type="button" value="Upload Write-up" />
-                  <input type="button" value="Upload Code" onClick={this.handleUploadCode}/>
-              </div> */}
           </div>
         );
     }

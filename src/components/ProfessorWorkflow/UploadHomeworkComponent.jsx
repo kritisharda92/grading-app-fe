@@ -41,7 +41,17 @@ class UploadHomeworkComponent extends React.Component {
 
 
     handleHomeworkUploadSubmit(event) {
-      
+
+      let allAreFilled = true;
+      document.getElementById("form-validate").querySelectorAll("[required]").forEach(function(i) {
+        if (!allAreFilled) return;
+        if (!i.value) allAreFilled = false;
+      })
+      if (!allAreFilled) {
+        alert('Fill all the fields');
+        return;
+      }
+
       var hw_dd = new FormData();
       hw_dd.append("homeworkName", this.state.homeworkName);
       hw_dd.append("dueDate", this.state.dueDate);
@@ -59,9 +69,9 @@ class UploadHomeworkComponent extends React.Component {
         let prob = new FormData();
         prob.append("homeworkName", this.state.homeworkName);
         prob.append("problemName",document.getElementById(i).getElementsByTagName("input")[0].value);
-        prob.append("problemDescription",document.getElementById(i).getElementsByTagName("input")[1].value);
-        prob.append("inputFile",document.getElementById(i).getElementsByTagName("input")[2].files[0]);
-        prob.append("outputFile",document.getElementById(i).getElementsByTagName("input")[3].files[0]);
+        prob.append("problemDescription",document.getElementById(i).getElementsByTagName("textarea")[0].value);
+        prob.append("inputFile",document.getElementById(i).getElementsByTagName("input")[1].files[0]);
+        prob.append("outputFile",document.getElementById(i).getElementsByTagName("input")[2].files[0]);
 
         // API call to add problems to homework
         fetch('http://localhost:8080/upload', {
@@ -88,20 +98,19 @@ class UploadHomeworkComponent extends React.Component {
     }
   
     render() {
-      console.log(this.state);
       return (
         <div className='professor-container'>
             <Header />
             <SubHeader user="Professor"/>
             <h2 className="professor-heading">Create Homework</h2>
-            <div className="professor-form">
+            <div className="professor-form" id='form-validate'>
               <Form.Group controlId="formHomeworkName">
                 <Form.Label>Homework Name</Form.Label>
-                <Form.Control className="homework-name" type="text" name="homeworkName" onChange={this.handleHomeworkName} placeholder="Enter homework name" />
+                <Form.Control required className="homework-name" type="text" name="homeworkName" onChange={this.handleHomeworkName} placeholder="Enter homework name" />
               </Form.Group>
               <Form.Group controlId="formDueDate">
                 <Form.Label>Due Date</Form.Label>
-                <Form.Control type="date" name="dueDate" onChange={this.handleDueDate} placeholder="Enter due date" />
+                <Form.Control required type="date" name="dueDate" onChange={this.handleDueDate} placeholder="Enter due date" />
               </Form.Group>
               <QuestionDescription id={0} questionData={this.problemUpdate}/>
               {

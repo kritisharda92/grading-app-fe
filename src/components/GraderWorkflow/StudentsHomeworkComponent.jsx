@@ -56,7 +56,8 @@ class StudentsHomeworkComponent extends React.Component {
         var data = this.state.submissionDetails;
         var users = data.map((el) => { return el.userName });
         var probs = data.map ((el) => { return el.problems });
-        var dates = data.map ((el) => { return el.submissionDates})
+        var dates = data.map ((el) => { return el.submissionDates});
+        var marks = data.map ((el) => { return el.marksList });
         console.log(probs);
         console.log(dates);
 
@@ -68,7 +69,8 @@ class StudentsHomeworkComponent extends React.Component {
                             <td></td> 
                             <td>{item}</td>
                             <td>{dates[i][j]}</td>
-                            <td>Graded</td>
+                            <td>{marks[i][j] == -1 ? "Not Graded": "Graded"}</td>
+                            <td>{ marks[i][j] == -1 ? "-": marks[i][j]}</td>
                         </tr>
                     </Fragment>
                 )
@@ -78,7 +80,7 @@ class StudentsHomeworkComponent extends React.Component {
                 <Fragment key={i}>
                     <tr className="color-orange"> 
                         <td>{i}</td> 
-                        <td colSpan="3">{item}</td>
+                        <td colSpan="4">{item}</td>
                     </tr>
                     {problemRows}
                 </Fragment>
@@ -98,7 +100,8 @@ class StudentsHomeworkComponent extends React.Component {
                     <th>#</th>
                     <th>Student Submissions</th>
                     <th>Submission Date</th>
-                    <th>Graded</th>
+                    <th>Status</th>
+                    <th>Marks</th>
                     </tr>
                 </thead>
                 <tbody>

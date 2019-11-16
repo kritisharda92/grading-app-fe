@@ -42,19 +42,19 @@ class QuestionDecriptionComponent extends React.Component {
             <div className="question-description-container" id={this.state.id}>
                 <Form.Group controlId="formProblemName">
                     <Form.Label>Problem Name</Form.Label>
-                    <Form.Control type="text" name="problemName" onChange={this.problemNameUpdate} placeholder="Enter problem name" />
+                    <Form.Control required type="text" name="problemName" onChange={this.problemNameUpdate} placeholder="Enter problem name" />
                 </Form.Group>
                 <Form.Group controlId="formProblemDescription">
                     <Form.Label>Problem Decription</Form.Label>
-                    <Form.Control as="textarea" name="problemDescription" onChange={this.problemDescription} placeholder="Enter problem description" />
+                    <Form.Control required as="textarea" name="problemDescription" onChange={this.problemDescription} placeholder="Enter problem description" />
                 </Form.Group>
                 <Form.Group controlId="formTestCase">
                     <Form.Label>Test Case File</Form.Label>
-                    <Form.Control type="file" name="textCases" onChange={this.testCase} placeholder="Upload the test case file" />
+                    <Form.Control required type="file" name="textCases" onChange={this.testCase} placeholder="Upload the test case file" />
                 </Form.Group>
                 <Form.Group controlId="formExpectedOutput">
                     <Form.Label>Expected Output File</Form.Label>
-                    <Form.Control type="file" name="outputFile" onChange={this.expectedOutput} placeholder="Upload the expected output file" />
+                    <Form.Control required type="file" name="outputFile" onChange={this.expectedOutput} placeholder="Upload the expected output file" />
                 </Form.Group>
             </div>
 
