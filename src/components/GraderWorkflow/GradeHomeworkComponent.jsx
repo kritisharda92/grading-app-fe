@@ -30,6 +30,20 @@ class GradeHomeworkComponent extends React.Component {
     }
 
     handleHomeworkSubmit() {
+
+        let allAreFilled = true;
+        document.getElementById("form-validate").querySelectorAll("[required]").forEach(function(i) {
+            i.style.outline = "none";
+            if (!i.value) {
+            allAreFilled = false;
+            i.style.outline = "1px solid red";
+            }
+        })
+        if (!allAreFilled) {
+            alert('Some required fields are missing!');
+            return;
+        }
+
         let hw = this.state.currentHomework;
         this.props.history.push({
             pathname: '/studentsHomework',
@@ -51,11 +65,11 @@ class GradeHomeworkComponent extends React.Component {
               <Header />
               <SubHeader user="Grader"/>
               <h2 className="grader-heading">Select a Homework to Grade</h2>
-              <div className="grader-form">
+              <div className="grader-form" id="form-validate">
                 <Form.Group controlId="formHomeworkName">
                     <Form.Label>Homework Name</Form.Label>
-                    <Form.Control as="select" name="selectHomework" onChange={this.handleCurrentHomework} defaultValue ="none" >
-                        <option value="none" disabled hidden> Select a homework </option>
+                    <Form.Control required as="select" name="selectHomework" onChange={this.handleCurrentHomework} defaultValue ="" >
+                        <option value="" disabled hidden> Select a homework </option>
                         {allHWList} 
                     </Form.Control>
                 </Form.Group>

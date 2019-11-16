@@ -10,7 +10,8 @@ class StudentSubmissionComponent extends React.Component {
         let user = props.history.location.state.username;
         let problem = props.history.location.state.problem;
         let submissionDetails = props.history.location.state.submissionDetails;
-
+        console.log(submissionDetails);
+        
         this.state = {
             homework: hw,
             username: user,

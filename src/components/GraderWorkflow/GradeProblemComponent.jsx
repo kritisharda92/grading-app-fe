@@ -65,7 +65,19 @@ class GradeProblemComponent extends React.Component {
     }
 
     handleSubmitMarks(){
-        console.log("hitting the API now!")
+        
+        let allAreFilled = true;
+        document.getElementById("form-validate").querySelectorAll("[required]").forEach(function(i) {
+            i.style.outline = "none";
+            if (!i.value) {
+            allAreFilled = false;
+            i.style.outline = "1px solid red";
+            }
+        })
+        if (!allAreFilled) {
+            alert('Some required fields are missing!');
+            return;
+        }
 
         var fd = new FormData();
         fd.append("userName",this.state.username);
@@ -111,7 +123,7 @@ class GradeProblemComponent extends React.Component {
               < SubHeader user="Student"/>
               <h2 className="student-heading">Submission Details</h2>
 
-              <div className="student-submission-form">
+              <div className="student-submission-form" id="form-validate">
                 <div> 
                     <div className="info-heading"> Username : </div>
                     <div className="info-value">{this.state.username}</div>
@@ -145,7 +157,7 @@ class GradeProblemComponent extends React.Component {
                 </div> <br /> <br />
                 <Form.Group controlId="formMarks">
                     <Form.Label>Enter marks</Form.Label>
-                    <Form.Control type="text" name="marks" onChange={this.marksUpdate} placeholder="Enter student marks" />
+                    <Form.Control required type="text" name="marks" onChange={this.marksUpdate} placeholder="Enter student marks" />
                 </Form.Group> <br />
                 <Form.Group controlId="formFeedback">
                     <Form.Label>Enter feedback</Form.Label>

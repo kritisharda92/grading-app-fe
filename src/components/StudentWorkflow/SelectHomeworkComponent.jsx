@@ -29,6 +29,20 @@ class SelectHomeworkComponent extends React.Component {
     }
 
     handleWriteUp(e) {
+
+        let allAreFilled = true;
+        document.getElementById("form-validate").querySelectorAll("[required]").forEach(function(i) {
+            i.style.outline = "none";
+            if (!i.value) {
+            allAreFilled = false;
+            i.style.outline = "1px solid red";
+            }
+        })
+        if (!allAreFilled) {
+            alert('Some required fields are missing!');
+            return;
+        }
+
         let formData = new FormData();
         formData.append("writeupFile", e.target.files[0]);
         formData.append("userName", this.state.username);
@@ -53,6 +67,21 @@ class SelectHomeworkComponent extends React.Component {
     }
 
     handleUploadCode() {
+        let allAreFilled = true;
+        document.getElementById("form-validate").querySelectorAll("[required]").forEach(function(i) {
+            console.log(i);
+            console.log(i.value);
+            i.style.outline = "none";
+            if (!i.value) {
+            allAreFilled = false;
+            i.style.outline = "1px solid red";
+            }
+        })
+        if (!allAreFilled) {
+            alert('Some required fields are missing!');
+            return;
+        }
+
         let curHw = this.state.currentHomework;
         let user = this.state.username;
         this.props.history.push({
@@ -78,18 +107,18 @@ class SelectHomeworkComponent extends React.Component {
         
             <div className='student-container'>
               <Header />
-              < SubHeader user="Student"/>
+              <SubHeader user="Student"/>
               <h2 className="student-heading">Select Homework</h2>
 
-              <div className="professor-form">
+              <div className="professor-form" id="form-validate">
                 <Form.Group controlId="formUserName">
                     <Form.Label>RIT Username</Form.Label>
-                    <Form.Control className="user-name" type="text" name="userName" onChange={this.handleUsername} placeholder="Enter username" />
+                    <Form.Control required className="user-name" type="text" name="userName" onChange={this.handleUsername} placeholder="Enter username" />
                 </Form.Group>
                 <Form.Group controlId="formHomeworkName">
                     <Form.Label>Homework Name</Form.Label>
-                    <Form.Control as="select" name="selectHomework" onChange={this.handleCurrentHomework} defaultValue ="none" placeholder="Enter due date" >
-                        <option value="none" disabled hidden> Select a homework </option>
+                    <Form.Control required as="select" name="selectHomework" onChange={this.handleCurrentHomework} defaultValue ="" placeholder="Enter due date" >
+                        <option value="" disabled hidden> Select a homework </option>
                         {hwList} 
                     </Form.Control>
                 </Form.Group>

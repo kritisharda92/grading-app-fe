@@ -42,6 +42,20 @@ class UploadCodeComponent extends React.Component {
     }
 
     handleUploadCode() {
+
+        let allAreFilled = true;
+        document.getElementById("form-validate").querySelectorAll("[required]").forEach(function(i) {
+            i.style.outline = "none";
+            if (!i.value) {
+            allAreFilled = false;
+            i.style.outline = "1px solid red";
+            }
+        })
+        if (!allAreFilled) {
+            alert('Some required fields are missing!');
+            return;
+        }
+
         var formData = new FormData();
         formData.append("sourceCode",this.state.code);
         formData.append("userName", this.state.username);
@@ -83,22 +97,21 @@ class UploadCodeComponent extends React.Component {
               < SubHeader user="Student"/>
               <h2 className="student-heading">Select Problem</h2>
 
-              <div className="professor-form">
+              <div className="professor-form" id="form-validate">
                 <Form.Group controlId="formProblemName">
                     <Form.Label>Problem Name</Form.Label>
-                    <Form.Control as="select" name="selectProblem" onChange={this.handleCurrentProblem} defaultValue ="none" >
-                        <option value="none" disabled hidden> Select a problem </option>
+                    <Form.Control required as="select" name="selectProblem" onChange={this.handleCurrentProblem} defaultValue ="" >
+                        <option value="" disabled hidden> Select a problem </option>
                         {probList}
                     </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId="formCodeFile">
                     <Form.Label>Upload Code</Form.Label>
-                    <Form.Control type="file" name="outputFile" onChange={this.handleCodeFile} placeholder="Upload the code file" />
+                    <Form.Control required type="file" name="outputFile" onChange={this.handleCodeFile} placeholder="Upload the code file" />
                 </Form.Group>
 
                 <div className="button-wrapper" >
-                    {/* <input className="submit-button" type="button" value="Upload Code" onClick={this.handleUploadCode}/> */}
                     <input className="submit-button" type="button" value="Upload Code" onClick={this.handleUploadCode}/>
                 </div>
               </div>

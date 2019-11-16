@@ -44,11 +44,16 @@ class UploadHomeworkComponent extends React.Component {
 
       let allAreFilled = true;
       document.getElementById("form-validate").querySelectorAll("[required]").forEach(function(i) {
-        if (!allAreFilled) return;
-        if (!i.value) allAreFilled = false;
+        // if (!allAreFilled) return;
+        i.style.outline = "none";
+        if (!i.value) {
+          allAreFilled = false;
+          // i.style.color = "red";
+          i.style.outline = "1px solid red";
+        }
       })
       if (!allAreFilled) {
-        alert('Fill all the fields');
+        alert('Some required fields are missing!');
         return;
       }
 
