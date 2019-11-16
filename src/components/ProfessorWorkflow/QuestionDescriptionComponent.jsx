@@ -46,7 +46,7 @@ class QuestionDecriptionComponent extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="formProblemDescription">
                     <Form.Label>Problem Decription</Form.Label>
-                    <Form.Control type="text" name="problemDescription" onChange={this.problemDescription} placeholder="Enter problem description" />
+                    <Form.Control as="textarea" name="problemDescription" onChange={this.problemDescription} placeholder="Enter problem description" />
                 </Form.Group>
                 <Form.Group controlId="formTestCase">
                     <Form.Label>Test Case File</Form.Label>

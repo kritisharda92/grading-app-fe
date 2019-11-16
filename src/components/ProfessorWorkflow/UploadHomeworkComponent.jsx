@@ -41,7 +41,7 @@ class UploadHomeworkComponent extends React.Component {
 
 
     handleHomeworkUploadSubmit(event) {
-
+      
       var hw_dd = new FormData();
       hw_dd.append("homeworkName", this.state.homeworkName);
       hw_dd.append("dueDate", this.state.dueDate);

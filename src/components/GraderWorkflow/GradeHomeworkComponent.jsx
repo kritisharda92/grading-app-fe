@@ -11,7 +11,7 @@ class GradeHomeworkComponent extends React.Component {
 
         this.state = {
             allHomeworks: [],
-            currentHomework: ''
+            currentHomework: '',
         }
 
         this.handleCurrentHomework = this.handleCurrentHomework.bind(this);

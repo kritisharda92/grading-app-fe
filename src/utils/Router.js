@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import WelcomeScreenPage from '../components/WelcomeScreen/WelcomeScreenComponent';
 import StudentPage from '../components/StudentWorkflow/SelectHomeworkComponent';
 import ProfessorPage from '../components/ProfessorWorkflow/UploadHomeworkComponent';
@@ -15,7 +15,7 @@ class Router extends Component {
   render() {
     return (
       <HashRouter>
-        <div>
+        <Switch>
             <Route exact path="/student" component={StudentPage} />
             <Route exact path="/professor" component={ProfessorPage} />
             <Route exact path="/grader" component={GraderPage} />
@@ -25,7 +25,8 @@ class Router extends Component {
             <Route exact path="/submissionDetails" component={StudentSubmissionComponent} />
             <Route exact path="/studentsHomework" component={StudentsHomeworkComponent} />
             <Route exact path="/gradeProblem" component={GradeProblemComponent} />
-        </div>
+            <Route component={WelcomeScreenPage} />
+        </Switch>
       </HashRouter>
       /* eslint-enable */
     );

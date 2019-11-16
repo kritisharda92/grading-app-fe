@@ -56,6 +56,9 @@ class StudentsHomeworkComponent extends React.Component {
         var data = this.state.submissionDetails;
         var users = data.map((el) => { return el.userName });
         var probs = data.map ((el) => { return el.problems });
+        var dates = data.map ((el) => { return el.submissionDates})
+        console.log(probs);
+        console.log(dates);
 
         var tableRows = users.map((item,i) => {
             var problemRows = probs[i].map((item,j)=>{
@@ -64,7 +67,7 @@ class StudentsHomeworkComponent extends React.Component {
                         <tr onClick={() => this.handleProblemClick(item,users[i])}> 
                             <td></td> 
                             <td>{item}</td>
-                            <td>11-10-2019</td>
+                            <td>{dates[i][j]}</td>
                             <td>Graded</td>
                         </tr>
                     </Fragment>

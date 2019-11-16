@@ -10,15 +10,12 @@
         margin: 0 350px;
         font-size: 18px;
 
-        .success-message {
-            text-align: center;
-            .problem-name {
-                font-weight: 700;
-            }
+        .info-name {
+            font-weight: 700;
         }
 
         .display-box {
-            padding: 10px 15px 0 15px;
+            padding: 10px 15px 10px 15px;
             border: 1px solid #d1d1d1;
             border-radius: 5px;
             margin-bottom: 20px;
