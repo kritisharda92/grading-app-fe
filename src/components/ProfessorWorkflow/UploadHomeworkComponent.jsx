@@ -66,27 +66,32 @@ class UploadHomeworkComponent extends React.Component {
         method: 'POST',
         body: hw_dd,
         mode: "no-cors"
-      });
+      }).then(() =>{
 
-      const n = this.state.numberOfProblems;
+        const n = this.state.numberOfProblems;
 
-      for(let i=0; i<n; i++) {
-        let prob = new FormData();
-        prob.append("homeworkName", this.state.homeworkName);
-        prob.append("problemName",document.getElementById(i).getElementsByTagName("input")[0].value);
-        prob.append("problemDescription",document.getElementById(i).getElementsByTagName("textarea")[0].value);
-        prob.append("inputFile",document.getElementById(i).getElementsByTagName("input")[1].files[0]);
-        prob.append("outputFile",document.getElementById(i).getElementsByTagName("input")[2].files[0]);
+        for(let i=0; i<n; i++) {
+          let prob = new FormData();
+          prob.append("homeworkName", this.state.homeworkName);
+          prob.append("problemName",document.getElementById(i).getElementsByTagName("input")[0].value);
+          prob.append("problemDescription",document.getElementById(i).getElementsByTagName("textarea")[0].value);
+          prob.append("inputFile",document.getElementById(i).getElementsByTagName("input")[1].files[0]);
+          prob.append("outputFile",document.getElementById(i).getElementsByTagName("input")[2].files[0]);
 
-        // API call to add problems to homework
-        fetch('http://localhost:8080/upload', {
-          method: 'POST',
-          body: prob,
-          mode: "no-cors"
-        });
+          // API call to add problems to homework
+          fetch('http://localhost:8080/upload', {
+            method: 'POST',
+            body: prob,
+            mode: "no-cors"
+          });
       }
-
       this.props.history.push('/professorConfirmation');
+    
+    });
+
+
+      
+      
 
     }
 
