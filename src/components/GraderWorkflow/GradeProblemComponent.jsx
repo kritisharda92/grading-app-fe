@@ -51,15 +51,38 @@ class GradeProblemComponent extends React.Component {
         });
     }
 
+    // handleWriteupDownload() {
+        // const url = window.URL.createObjectURL(new Blob([this.state.writeupURL]));
+        // const link = document.createElement('a');
+        // link.href = url;
+        // link.setAttribute('download', 'file.pdf'); //or any other extension
+        // // document.body.appendChild(link);
+        // link.click();
+
+        // axios({
+        //     url: 'http://localhost:8080/download?fileName='+this.state.writeupURL,
+        //     method: 'GET',
+        //     responseType: 'blob', // important
+        //   }).then((response) => {
+        //      const url = window.URL.createObjectURL(new Blob([response.data]));
+        //      const link = document.createElement('a');
+        //      link.href = url;
+        //      link.setAttribute('download', 'file.pdf'); //or any other extension
+        //      document.body.appendChild(link);
+        //      link.click();
+        //   });
+    // }
+
     handleWriteupDownload() {
         axios.get('http://localhost:8080/download?fileName='+this.state.writeupURL)
         .then((response) => {
-            console.log(response.data);
+            console.log(response);
         });
     }
 
     handleCodeDownload() {
-        axios.get('http://localhost:8080/download?filename='+this.state.codeURL)
+        console.log(this.state.codeURL);
+        axios.get('http://localhost:8080/download?fileName='+this.state.codeURL)
         .then((response) => {
             console.log(response.data);
         });
@@ -111,13 +134,32 @@ class GradeProblemComponent extends React.Component {
     }
 
     render() {
-        var yourOutput;
-        if(this.state.status===0){
-            yourOutput = this.state.studentOutput;
-        } else {
-            yourOutput = this.state.errorOutput;
-        }
-        var expectedOutput=this.state.expectedOutput;
+        // var yourOutput;
+        // if(this.state.status===0){
+        //     yourOutput = this.state.studentOutput;
+        // } else {
+        //     yourOutput = this.state.errorOutput;
+        // }
+        // var expectedOutput=this.state.expectedOutput;
+
+        var yourOutput = (this.state.status === 0) ? 
+        
+        this.state.studentOutput.split('\n').map((item,i) => {
+            return <pre key={i}>{ item }</pre>
+        }) 
+        :     
+        this.state.errorOutput.split('\n').map((item,i) => {
+            if(item.includes('Main.java')) {
+                item = item.substring(item.indexOf('Main.java'));
+            }
+            return <pre key={i}>{ item }</pre>
+        })
+        
+
+        var expectedOutput = this.state.expectedOutput.split('\n').map((item,i) => {
+            return <pre key={i}>{ item }</pre>
+        })
+
         return (
           <div className='student-code-container'>
               <Header />
