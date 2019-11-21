@@ -38,20 +38,21 @@ class GradeProblemComponent extends React.Component {
         axios.get('http://localhost:8080/getSubmissionFiles?homeworkName='+ this.state.homework +
         '&questionName='+ this.state.problem +'&userName='+ this.state.username)
         .then((response) => {
+            console.log(response.data);
             this.setState ({
                 errorOutput: response.data.result.errorOutput,
                 expectedOutput: response.data.result.expectedOutput,
                 studentOutput: response.data.result.studentOutput,
                 status: response.data.result.status,
                 testCasePassed: response.data.result.testCasePassed,
-                codeURL: response.data.result.codeFileURL,
-                writeupURL: response.data.result.writeupFileURL,
+                codeURL: response.data.homeworkFileName,
+                writeupURL: response.data.writeupFileName,
             })
         });
     }
 
     handleWriteupDownload() {
-        axios.get('http://localhost:8080/download?filename='+this.state.writeupURL)
+        axios.get('http://localhost:8080/download?fileName='+this.state.writeupURL)
         .then((response) => {
             console.log(response.data);
         });
