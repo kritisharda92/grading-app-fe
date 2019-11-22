@@ -67,10 +67,8 @@ class UploadHomeworkComponent extends React.Component {
         method: 'POST',
         body: hw_dd,
         mode: "no-cors"
-      }).then(() =>{
-
+      }).then((res) =>{
         const n = this.state.numberOfProblems;
-
         for(let i=0; i<n; i++) {
           let prob = new FormData();
           prob.append("homeworkName", this.state.homeworkName);

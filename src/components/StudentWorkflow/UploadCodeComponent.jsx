@@ -68,6 +68,7 @@ class UploadCodeComponent extends React.Component {
         // API call to upload code for a problem
         axios.post(`${url}submitHomework`,formData)
         .then(response => {
+            console.log(response);
             this.setState({ submissionDetails : response.data })
 
             this.props.history.push({
