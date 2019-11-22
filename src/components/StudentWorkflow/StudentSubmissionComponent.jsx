@@ -66,7 +66,7 @@ class StudentSubmissionComponent extends React.Component {
         return (
           <div className='student-code-container'>
               <Header />
-              < SubHeader user="Student"/>
+              <SubHeader user="Student" removeBack/>
               <h2 className="student-heading">Submission Details</h2>
 
               <div className="student-submission-form">

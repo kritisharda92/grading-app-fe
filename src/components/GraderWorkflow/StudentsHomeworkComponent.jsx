@@ -91,7 +91,7 @@ class StudentsHomeworkComponent extends React.Component {
         return (
           <div className='grader-container'>
               <Header />
-              <SubHeader user="Grader"/>
+              <SubHeader user="Grader" intermediate />
               <h2 className="grader-heading">Grading - {this.state.currentHomework}</h2>
               <div className="grader-form-2">
               <Table bordered hover>

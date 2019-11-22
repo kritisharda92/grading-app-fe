@@ -38,7 +38,6 @@ class GradeProblemComponent extends React.Component {
         axios.get('http://localhost:8080/getSubmissionFiles?homeworkName='+ this.state.homework +
         '&questionName='+ this.state.problem +'&userName='+ this.state.username)
         .then((response) => {
-            console.log(response.data);
             this.setState ({
                 errorOutput: response.data.result.errorOutput,
                 expectedOutput: response.data.result.expectedOutput,
@@ -76,7 +75,7 @@ class GradeProblemComponent extends React.Component {
     handleWriteupDownload() {
         axios.get('http://localhost:8080/download?fileName='+this.state.writeupURL)
         .then((response) => {
-            console.log(response);
+            console.log(response.data);
         });
     }
 
@@ -163,7 +162,7 @@ class GradeProblemComponent extends React.Component {
         return (
           <div className='student-code-container'>
               <Header />
-              < SubHeader user="Student"/>
+              <SubHeader user="Grader" marksUpload homework={this.state.homework}/>
               <h2 className="student-heading">Submission Details</h2>
 
               <div className="student-submission-form" id="form-validate">

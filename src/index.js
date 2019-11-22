@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Router from './utils/Router'; 
-// import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(<Router />, document.getElementById('root'));

@@ -94,7 +94,7 @@ class UploadCodeComponent extends React.Component {
         return (
           <div className='student-code-container'>
               <Header />
-              < SubHeader user="Student"/>
+              <SubHeader user="Student" intermediate/>
               <h2 className="student-heading">Select Problem</h2>
 
               <div className="professor-form" id="form-validate">

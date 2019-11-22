@@ -25,7 +25,7 @@ class UploadHomeworkComponent extends React.Component {
       return (
         <div className='professor-conf-container'>
             <Header />
-            <SubHeader user="Professor"/>
+            <SubHeader user="Professor" removeBack/>
             <h2 className="professor-conf-heading">Confirmation screen</h2>
             <img src={binderIcon} alt="confirmation" className="confirmation-image"/> 
             <div className="professor-conf-msg"> YAY! The homework was uploaded successfully</div> <br/>
