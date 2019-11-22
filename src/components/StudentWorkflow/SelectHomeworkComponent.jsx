@@ -4,6 +4,9 @@ import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import { Form } from 'react-bootstrap';
 import './SelectHomeworkComponent.scss';
 import axios from 'axios';
+import config from '../../config/config';
+
+const url = `${config.constants.URL}`;
 
 class SelectHomeworkComponent extends React.Component {
     constructor() {
@@ -22,7 +25,7 @@ class SelectHomeworkComponent extends React.Component {
     }
 
     UNSAFE_componentWillMount() {
-        axios.get('http://localhost:8080/availableHomework')
+        axios.get(`${url}availableHomework`)
         .then((response) => {
             this.setState ({ homeworks: response.data });
         });
@@ -48,7 +51,7 @@ class SelectHomeworkComponent extends React.Component {
         formData.append("userName", this.state.username);
         formData.append("homeworkName", this.state.currentHomework);
 
-        fetch('http://localhost:8080/uploadWriteup', {
+        fetch(`${url}uploadWriteup`, {
           method: 'POST',
           body: formData,
           mode: "no-cors"

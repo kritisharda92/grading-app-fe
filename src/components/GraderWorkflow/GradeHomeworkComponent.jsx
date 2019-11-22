@@ -4,6 +4,9 @@ import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import { Form } from 'react-bootstrap';
 import axios from 'axios'; 
 import './GradeHomeworkComponent.scss';
+import config from '../../config/config';
+
+const url = `${config.constants.URL}`;
 
 class GradeHomeworkComponent extends React.Component {
     constructor() {
@@ -19,7 +22,7 @@ class GradeHomeworkComponent extends React.Component {
     }
 
     UNSAFE_componentWillMount() {
-        axios.get('http://localhost:8080/findAllHomework')
+        axios.get(`${url}findAllHomework`)
         .then((response) => {
             this.setState ({ allHomeworks: response.data });
         });

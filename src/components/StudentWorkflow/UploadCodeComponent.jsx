@@ -4,6 +4,9 @@ import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import './UploadCodeComponent.scss';
+import config from '../../config/config';
+
+const url = `${config.constants.URL}`;
 
 class UploadCodeComponent extends React.Component {
     constructor(props) {
@@ -27,7 +30,7 @@ class UploadCodeComponent extends React.Component {
     }
 
     UNSAFE_componentWillMount() {
-        axios.get('http://localhost:8080/findProblem?homeworkName='+this.state.currentHomework)
+        axios.get(`${url}findProblem?homeworkName=${this.state.currentHomework}`)
         .then((response) => {
             this.setState({ problems: response.data });
         });
@@ -63,7 +66,7 @@ class UploadCodeComponent extends React.Component {
         formData.append("questionName", this.state.currentProblem);
 
         // API call to upload code for a problem
-        axios.post('http://localhost:8080/submitHomework',formData)
+        axios.post(`${url}submitHomework`,formData)
         .then(response => {
             this.setState({ submissionDetails : response.data })
 

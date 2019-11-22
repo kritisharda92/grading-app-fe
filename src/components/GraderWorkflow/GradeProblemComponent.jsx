@@ -4,6 +4,9 @@ import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import { Form } from 'react-bootstrap';
 import axios from 'axios';
 import './GradeProblemComponent.scss';
+import config from '../../config/config';
+
+const url = `${config.constants.URL}`;
 
 class GradeProblemComponent extends React.Component {
     constructor(props) {
@@ -36,8 +39,8 @@ class GradeProblemComponent extends React.Component {
 
     UNSAFE_componentWillMount() {
         console.log(this.state);
-        axios.get('http://localhost:8080/getSubmissionFiles?homeworkName='+ this.state.homework +
-        '&questionName='+ this.state.problem +'&userName='+ this.state.username)
+        axios.get(
+            `${url}getSubmissionFiles?homeworkName=${this.state.homework}&questionName=${this.state.problem}&userName=${this.state.username}`)
         .then((response) => {
             this.setState ({
                 errorOutput: response.data.result.errorOutput,
@@ -74,7 +77,7 @@ class GradeProblemComponent extends React.Component {
     // }
 
     handleWriteupDownload() {
-        axios.get('http://localhost:8080/download?fileName='+this.state.writeupURL)
+        axios.get(`${url}download?fileName=${this.state.writeupURL}`)
         .then((response) => {
             console.log(response.data);
         });
@@ -82,7 +85,7 @@ class GradeProblemComponent extends React.Component {
 
     handleCodeDownload() {
         console.log(this.state.codeURL);
-        axios.get('http://localhost:8080/download?fileName='+this.state.codeURL)
+        axios.get(`${url}download?fileName=${this.state.codeURL}`)
         .then((response) => {
             console.log(response.data);
         });
@@ -110,7 +113,7 @@ class GradeProblemComponent extends React.Component {
         fd.append("marks",this.state.marks);
         fd.append("feedback",this.state.feedback);
 
-        axios.post('http://localhost:8080/submitGrades', fd)
+        axios.post(`${url}submitGrades`, fd)
         .then((response) => {
            window.alert("Student marks and feedback was recorded successfully!");
 

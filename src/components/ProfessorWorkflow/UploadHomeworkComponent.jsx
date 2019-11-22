@@ -3,9 +3,10 @@ import QuestionDescription from './QuestionDescriptionComponent';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import { Form } from 'react-bootstrap';
-
 import './UploadHomeworkComponent.scss';
+import config from '../../config/config';
 
+const url = `${config.constants.URL}`;
 class UploadHomeworkComponent extends React.Component {
     constructor() {
       super();
@@ -62,7 +63,7 @@ class UploadHomeworkComponent extends React.Component {
       hw_dd.append("dueDate", this.state.dueDate);
 
       // API call to create homework - assumptions - hw name is unique
-      fetch('http://localhost:8080/create', {
+      fetch(`${url}create`, {
         method: 'POST',
         body: hw_dd,
         mode: "no-cors"
@@ -79,7 +80,7 @@ class UploadHomeworkComponent extends React.Component {
           prob.append("outputFile",document.getElementById(i).getElementsByTagName("input")[2].files[0]);
 
           // API call to add problems to homework
-          fetch('http://localhost:8080/upload', {
+          fetch(`${url}upload`, {
             method: 'POST',
             body: prob,
             mode: "no-cors"
@@ -88,11 +89,6 @@ class UploadHomeworkComponent extends React.Component {
       this.props.history.push('/professorConfirmation');
     
     });
-
-
-      
-      
-
     }
 
     handleHomeworkName(e) {

@@ -2,6 +2,9 @@ import React from 'react';
 import Header from '../HeaderComponent/HeaderComponent';
 import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import './StudentSubmissionComponent.scss';
+import config from '../../config/config';
+
+const url = `${config.constants.URL}`;
 
 class StudentSubmissionComponent extends React.Component {
     constructor(props) {
@@ -45,7 +48,7 @@ class StudentSubmissionComponent extends React.Component {
         formData.append("userName", this.state.username);
         formData.append("homeworkName", this.state.homework);
 
-        fetch('http://localhost:8080/uploadWriteup', {
+        fetch(`${url}uploadWriteup`, {
           method: 'POST',
           body: formData,
           mode: "no-cors"

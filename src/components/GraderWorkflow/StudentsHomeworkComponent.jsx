@@ -4,6 +4,9 @@ import SubHeader from '../SubHeaderComponent/SubHeaderComponent';
 import { Table } from 'react-bootstrap';
 import axios from 'axios'; 
 import './StudentsHomeworkComponent.scss';
+import config from '../../config/config';
+
+const url = `${config.constants.URL}`;
 
 class StudentsHomeworkComponent extends React.Component {
     constructor(props) {
@@ -34,7 +37,7 @@ class StudentsHomeworkComponent extends React.Component {
 
     UNSAFE_componentWillMount() {
         // set all states here
-        axios.get('http://localhost:8080/getHomeworkSubmissions?homeworkName='+this.state.currentHomework)
+        axios.get(`${url}getHomeworkSubmissions?homeworkName=${this.state.currentHomework}`)
         .then((response) => {
             this.setState({ submissionDetails: response.data });
         });

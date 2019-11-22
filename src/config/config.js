@@ -33,16 +33,7 @@ module.exports = {
     },
     env: 'dev',
     constants: {
-      API_RETRY: 30,
-      AUTOMATIC_RETRY_AMOUNT: 5,
-      BEER_OPTION: 'beer',
-      WINE_OPTION: 'wine',
-      FOOD_OPTION: 'food',
-      LANDING_OPTION: 'landing',
-      CATEGORY_CELL: 'category',
-      PRODUCT_CELL: 'product',
-      DIM_RATIO: 0.42,
-      SUBCATEGORY_WIDTH: 750,
+      URL: 'http://localhost:8080/',
     }
   };
   
