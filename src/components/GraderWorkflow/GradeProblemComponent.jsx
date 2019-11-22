@@ -35,6 +35,7 @@ class GradeProblemComponent extends React.Component {
     }
 
     UNSAFE_componentWillMount() {
+        console.log(this.state);
         axios.get('http://localhost:8080/getSubmissionFiles?homeworkName='+ this.state.homework +
         '&questionName='+ this.state.problem +'&userName='+ this.state.username)
         .then((response) => {
@@ -111,17 +112,15 @@ class GradeProblemComponent extends React.Component {
 
         axios.post('http://localhost:8080/submitGrades', fd)
         .then((response) => {
-           console.log(response.data);
+           window.alert("Student marks and feedback was recorded successfully!");
+
+            this.props.history.push({
+                pathname: '/studentsHomework',
+                state: { 
+                    homework: this.state.homework, 
+                }
+            })
         });
-
-        window.alert("Student marks and feedback was recorded successfully!");
-
-        this.props.history.push({
-            pathname: '/studentsHomework',
-            state: { 
-                homework: this.state.homework, 
-            }
-          })
     }
 
     marksUpdate(e) {
@@ -205,7 +204,7 @@ class GradeProblemComponent extends React.Component {
                     <Form.Label>Enter feedback</Form.Label>
                     <Form.Control as="textarea" name="feedback" onChange={this.feedbackUpdate} placeholder="Enter some feedback for the student" />
                 </Form.Group>
-                <div className="button-wrapper" >
+                <div className="button-wrapper-grader" >
                     <input className="submit-button" type="button" onClick={this.handleSubmitMarks} value="Submit" />
                 </div>
               </div>

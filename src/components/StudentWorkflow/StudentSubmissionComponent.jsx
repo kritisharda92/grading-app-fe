@@ -10,7 +10,6 @@ class StudentSubmissionComponent extends React.Component {
         let user = props.history.location.state.username;
         let problem = props.history.location.state.problem;
         let submissionDetails = props.history.location.state.submissionDetails;
-        console.log(submissionDetails);
         
         this.state = {
             homework: hw,
@@ -25,6 +24,7 @@ class StudentSubmissionComponent extends React.Component {
 
         this.handleAnotherProblem = this.handleAnotherProblem.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        this.handleWriteUp = this.handleWriteUp.bind(this);
 
     }
 
@@ -36,6 +36,23 @@ class StudentSubmissionComponent extends React.Component {
                 username: this.state.username,
             }
         })
+    }
+
+    handleWriteUp(e) {
+
+        let formData = new FormData();
+        formData.append("writeupFile", e.target.files[0]);
+        formData.append("userName", this.state.username);
+        formData.append("homeworkName", this.state.homework);
+
+        fetch('http://localhost:8080/uploadWriteup', {
+          method: 'POST',
+          body: formData,
+          mode: "no-cors"
+        })
+        .then(res => console.log(res));
+        
+        alert("The write-up was uploaded successfully!");
     }
 
     handleLogout() {
@@ -83,9 +100,11 @@ class StudentSubmissionComponent extends React.Component {
                     </span> <br/>
                 </div> 
                 <div className="button-wrapper" >
+                    <input className="submit-button" type="button" value="Upload Write-up" />
                     <input className="submit-button" type="button" onClick={this.handleAnotherProblem} value="Submit another problem" />
                     <input className="submit-button" type="button" onClick={this.handleLogout} value="Logout" />
                 </div>
+                <input onChange={this.handleWriteUp} className="dummy-button" id="myInput" type="file" />
               </div>
           </div>
         );
